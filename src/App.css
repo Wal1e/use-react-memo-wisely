@@ -1,6 +1,10 @@
 .App {
   /* text-align: center; */
   margin: 1vh;
+  /* display: flex; */
+}
+
+.rightCom, .leftCom{
   display: flex;
 }
 
