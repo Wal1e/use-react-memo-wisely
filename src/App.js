@@ -35,7 +35,7 @@ const RightCom = ()=>{
 const App = () => {
   const foo = 'foo'
   const data = {name:'memo'}
-  // const data = React.memo(()=>({
+  // const data = React.useMemo(()=>({
   //   name:'memo'
   // }), [])
   const testFn = ()=>{

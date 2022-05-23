@@ -1,7 +1,7 @@
 # use-react-memo-wisely
 
 ## Get Started
-&emsp;&emsp;快速响应的UI深受用户的喜爱，对于用户来说，小于100毫秒的UI响应延迟是即时的，但当延迟达到100到300毫秒之间时，已经可以感知到变化，为了提高用户界面性能，React提供了更高阶的组件React.memo。当使用React.memo包装一个组件时，React会将被包装组件的渲染保存起来，在下次被使用且props没有发生变化时，则直接用保存的结果（即只要props参数没有发生改变，渲染结果也不会改变）
+&emsp;&emsp;为了提高应用性能，React提供了更高阶的组件React.memo。当使用React.memo包装一个组件时，React会将被包装组件的渲染保存起来，在下次被使用且props没有发生变化时，则直接用保存的结果（即只要props参数没有发生改变，渲染结果也不会改变）
 
 ## Re-render in React
 &emsp;&emsp;这里先简单铺垫一下，来聊一聊React是如何进行render和re-render，以此更好引出提升性能相关的话题，清楚渲染机同学可直接跳到下一段，当在React中讨论render的时，通常讲的的是render函数的执行，在函数式组件中，整个函数的执行等同于类组件中render函数的执行，但render函数的执行，并不意味着UI的更新。首先我们知道组件的state改变会执行re-render，如果该组件还有children，即使children的props没有任何改变，也会进行re-render，当react决定更新dom的时候，会首先更新当前组件，然后在和上次渲染的结果进行对比，如果不同才会更新dom。
@@ -78,7 +78,7 @@ const App = () => {
 
 &emsp;&emsp;还有另外一种方式来解决该问题，可以使用React.memo来包裹该对象，这样就会缓存对象变量而不会在创造一个新的对象。
 ```
-const data = React.memo(()=>({
+const data = React.useMemo(()=>({
   name:'memo'
 }), [])
 ```
