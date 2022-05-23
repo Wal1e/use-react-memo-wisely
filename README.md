@@ -21,13 +21,14 @@ const App = () => {
 ```
 
 &emsp;&emsp;当在父组件APP里改变msg的state时,因为state 的改变，父组件将会re-render，它的两个子组件也会re- render，即时第二个子组件没有接收任何的props，这就意味着render函数执行了三次，但是真正的Dom改变仅仅发生在被传入msg属性的子组件，但当render函数或者函数式组件重新执行的时候，里面的所有代码都将会在次被执行。
-![avatar](https://h5.qzone.qq.com/v2/album/photoShare?hostUin=987261988&appid=4&cellid=V51THoPy1K00071vRFGs1boXQx4NfRqy&lloc=NR8AVjZiQ1FBNU9EY3lOakU1T0RqeVNvdGluT2wzTXchIQcAcGhvdG9neg!!&sharetag=1D08C82DA1438ADC8791E053A2A2555B)
+
+![avatar](http://m.qpic.cn/psc?/V51THoPy1K00071vRFGs1boXQx4NfRqy/bqQfVz5yrrGYSXMvKr.cqbkL2eSEVvQZEoDNV2EeMMGXJmG7sPcmfL6hAtzXh8G*E6bVZruinSKhIcpQ2xVdggEJBm3gViy1BQc9gHHQtJw!/b&bo=GgNzAgAAAAABF1g!&rf=viewer_4)
 
 &emsp;&emsp;在这个例子里，react仅仅只需要维护一个很小的组件树，但是可以想象一下，在一个复杂的应用里，如果每个节点都有更多的子节点，而这些子节点又可能有子组件，会发生什么情况，我们将如何对此进行优化呢？
 ## 又一个例子
 &emsp;&emsp;通过刚刚例子我们已经知道父组件在re-render时，其所有后续子组件都将重新渲染，无论其props是否已更改。开头已经说过React.memo会将被包装组件的渲染保存起来，在下次被使用且props没有发生变化时，则直接用保存的结果，一起在来看下另一个小例子，通过视图可以更形象化的来展示使用memo和不使用的对比效果，在输入框里输入任意内容，可看到update的次数变化，请点击我的[codeopen](https://codepen.io/wal1e/pen/BaYROQe)，在线查看具体代码效果。
 
-![avatar](https://h5.qzone.qq.com/v2/album/photoShare?hostUin=987261988&appid=4&cellid=V51THoPy1K00071vRFGs1boXQx4NfRqy&lloc=NR8AVjZiQ1FBNU9EY3lOakU1T0RqelNvdGlwQmg0TXchIQcAcGhvdG9neg!!&sharetag=A056B0607BD0455D4C6D2F63ECE424EA)
+![avatar](http://a1.qpic.cn/psc?/V51THoPy1K00071vRFGs1boXQx4NfRqy/bqQfVz5yrrGYSXMvKr.cqZ1bEyGJKJnEbi1ghaVjuelOvRsIhvSWSOvYghUQioMji3mmIAXUsWGufebEoVWCGb91eKo17phdQhw6F3cH52Y!/c&ek=1&kp=1&pt=0&bo=JQN3AgAAAAABF2M!&tl=1&vuin=987261988&tm=1653292800&dis_t=1653296389&dis_k=a871e9d6e3977e0ead4c3a74b9bfefb6&sce=60-2-2&rf=viewer_4)
 
 &emsp;&emsp;橘色的组件里包括三个子组件，一个输入框和两个展示更新次数的组件，顶部的更新次数对应的是父组件，背景为黑色的是两个子组件，其中左侧的组件被包装在React.memo函数里，用来阻止当props没有改变时执行re-render操作。
 ## React.memo
