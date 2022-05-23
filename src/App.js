@@ -14,8 +14,11 @@ const MemoCom = React.memo(()=>{
 })
 
 // const MemoCom = React.memo(()=>{
-//   let leftRef = useRef(0)
-//   return <Updates count={leftRef.current++}></Updates>
+//   const leftRef = useRef(0)
+//   return <div className='leftCom'>
+//     <div>memo:</div>
+//     <Updates count={leftRef.current++} />
+//   </div>
 // }, (prevProps, nextProps) => {
 //   return prevProps.data.name === nextProps.data.name
 // })
@@ -50,11 +53,13 @@ const App = () => {
   })
   return (
     <div className="App">
-      <div>
+      <div className='col'>
         <Updates count={updates.current} />
       </div>
-      <input value={text} placeholder="请输入" onChange={(e) => setText(e.target.value)} />
       <div>
+        <input value={text} placeholder="请输入" onChange={(e) => setText(e.target.value)} />
+      </div>
+      <div class='tile'>
         <MemoCom foo={foo} />
         <RightCom />
       </div>
