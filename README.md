@@ -76,7 +76,7 @@ const App = () => {
 ```
 &emsp;&emsp;React.memo用它的第二个参数提供了一种解法来解决这个问题，这个参数接受一个是否相等的函数，可以控制组件是否需要更新。点击查看[React.memo之prop是object类型](https://codepen.io/wal1e/pen/GRQvBMr)。
 
-&emsp;&emsp;还有另外一种方式来解决该问题，可以使用React.memo来包裹该对象，这样就会缓存对象变量而不会在创造一个新的对象。
+&emsp;&emsp;还有另外一种方式来解决该问题，可以使用React.useMemo来包裹该对象，这样就会缓存对象变量而不会在创造一个新的对象。
 ```
 const data = React.useMemo(()=>({
   name:'memo'
