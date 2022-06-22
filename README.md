@@ -8,7 +8,7 @@
 
 &emsp;&emsp;先来一起看下这个例子，点击查看[demo](https://codepen.io/wal1e/pen/LYQjBmp)
 
-```
+```javascript
 const App = () => {
   const [msg, setMsg] = React.useState('');
   return (
@@ -38,7 +38,7 @@ const App = () => {
 
 ## 常规用法
 &emsp;&emsp;最基本的用法如下所示，就是使用React.memo包裹一个函数式组件，请点击[常规用法](https://codepen.io/wal1e/pen/BaYROQe)，在线查看具体代码效果。
-```
+```javascript
 const MemoCom = React.memo(()=>{
   let leftRef = useRef(0)
   return <Updates count={leftRef.current++}></Updates>
@@ -56,7 +56,7 @@ const App = () => {
 
 ## prop是对象时
 &emsp;&emsp;因为只对组件的属性进行浅比较，在re-render更新App时，data变量也被再次声明，这将导致对象在实际上并不一样，因为前后的data对象.有不同的的引用。
-```
+```javascript
 const MemoCom = React.memo(()=>{
   let leftRef = useRef(0)
   return <Updates count={leftRef.current++}></Updates>
@@ -77,7 +77,7 @@ const App = () => {
 &emsp;&emsp;React.memo用它的第二个参数提供了一种解法来解决这个问题，这个参数接受一个是否相等的函数，可以控制组件是否需要更新。点击查看[React.memo之prop是object类型](https://codepen.io/wal1e/pen/GRQvBMr)。
 
 &emsp;&emsp;还有另外一种方式来解决该问题，可以使用React.useMemo来包裹该对象，这样就会缓存对象变量而不会在创造一个新的对象。
-```
+```javascript
 const data = React.useMemo(()=>({
   name:'memo'
 }), [])
@@ -85,7 +85,7 @@ const data = React.useMemo(()=>({
 
 ## prop是函数时
 &emsp;&emsp;在js中，函数的行为和对象相似，也会导致我们之前遇到的相似问题，函数变量在每次组件更新的时候重新被声明，字组件就于是就认为函数对象被改变，因为有不同的引用，我们可以像处理对象一样，通过缓存函数来解决这个问题。
-```
+```javascript
 const testFn = useCallback(()=>{
    console.log('testFn')
 },[])
